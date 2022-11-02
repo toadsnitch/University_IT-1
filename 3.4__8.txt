@@ -1,0 +1,13 @@
+#include <iostream> 
+using namespace std;
+int main() {
+    for (int height = 6; height <= 10; height++) {
+        for (int width = 5; width >= height - 5; width--) {
+            cout << height << ' ';
+        }
+        cout << endl;
+    }
+    cout << endl;
+    system("pause");
+    return 0;
+}

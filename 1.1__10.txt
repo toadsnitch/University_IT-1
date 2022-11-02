@@ -1,0 +1,13 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+int main() 
+{
+	float a, x;
+	cin >> x;
+	a = 1 + x / 3 + fabs(x) + (pow(x, 3) + 4) / 2;
+	cout << fixed << setprecision(3) << a;
+	system("pause");
+	return 0;
+}

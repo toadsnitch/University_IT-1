@@ -1,0 +1,36 @@
+#include <iostream> 
+#include <cmath>
+#include <iomanip>
+using namespace std;
+
+double fc(double p) {
+	return log(p / (p - 2));
+}
+
+int main() {
+	setlocale(LC_ALL, "RUS");
+	cout << "Введите диапазон [a, b]\n";
+	double a, b, h;
+	cin >> a >> b;
+	cout << "Введите шаг\n";
+	cin >> h;
+	cout << endl;
+
+	if ((a > b && h < 0) || (a < b && h > 0)) {
+		for (a; a <= b; a += h) {
+			if (a < 0 || a > 2) {
+				cout << fixed << setprecision(1) << a << "\t";
+				cout << fixed << setprecision(5) << (double)fc(a) << endl;
+			}
+			else {
+				cout << fixed << setprecision(1) << a << "\tФункция не определена\n";
+			}
+		}
+	}
+	else {
+		cout << "Данные введены некорректно\n";
+	}
+
+	system("pause");
+	return 0;
+}

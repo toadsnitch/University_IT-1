@@ -1,0 +1,28 @@
+#include <iostream> 
+using namespace std;
+int main() {
+    setlocale(LC_ALL, "RU");
+    int a;
+    cout << "Enter a number from 1 to 4" << endl;
+    cin >> a;
+
+    switch (a) {
+    case 1:
+        cout << "Пики\n";
+        break;
+    case 2:
+        cout << "Трефы\n";
+        break;
+    case 3:
+        cout << "Бубны\n";
+        break;
+    case 4:
+        cout << "Черви\n";
+        break;
+    default:
+        cout << "Я не знаю такой масти";
+        break;
+    }
+    system("pause");
+    return 0;
+}
