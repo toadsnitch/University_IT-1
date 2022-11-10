@@ -1,0 +1,25 @@
+#include <iostream> 
+#include <iomanip>
+using namespace std;
+
+
+int main() {
+
+	int i = 1;
+	double e, total = 0, a = 3, factorial = 1, chis = 3;
+
+	cout << "Enter e\t";
+	cin >> e;
+
+	while (a >= e) {
+		total += a;
+		++i;
+		factorial *= i;
+		chis *= 9;
+		a = chis / 3 * factorial;
+	}
+	cout << total << endl;
+
+	system ("pause");
+	return 0;
+}
