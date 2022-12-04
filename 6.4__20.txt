@@ -1,0 +1,34 @@
+// глава 6 упражнения 4 номер 20
+
+#include <iostream>
+using namespace std;
+int main() {
+	int rows;
+	cout << "enter the size of array:" << endl;
+	cin >> rows;
+	cout << "enter thr array elements:" << endl;
+
+	int** arr = new int* [rows];
+	for (int i = 0; i < rows; i++) {
+		arr[i] = new int[rows];
+	}
+	
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < rows; j++) {
+			cin >> arr[i][j];
+		}
+	}
+	
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < rows; j++) {
+			
+		}
+	}
+
+
+
+
+
+
+	return 0;
+}
