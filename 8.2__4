@@ -1,0 +1,38 @@
+// глава 8 упражнения 2 номер 4
+
+#include <iostream>
+using namespace std;
+
+int nod(int a, int b){
+	int d;
+	for (int i = 1; i <= b; i++) {
+		if ((a % i == 0) && (b % i == 0)) {
+			d = i;
+		}
+	}
+	return d;
+}
+
+int evk(int x, int y) {
+	if (x == y) {
+		return x;
+	}
+	else if (x > y) {
+		return nod(x - y, y);
+	}
+	else if (x < y) {
+		return nod(x, y - x);
+	}
+}
+
+int main() {
+	unsigned int a, b;
+	cout << "a, b\t";
+	cin >> a >> b;
+	
+	cout << evk(a, b);
+	
+	return 0;
+	system("pause");
+
+}
