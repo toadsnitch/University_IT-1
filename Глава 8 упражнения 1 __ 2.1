@@ -1,0 +1,27 @@
+// глава 8 упражнения 1 номер 2.1
+
+#include <iostream>
+using namespace std;
+
+int del(int x, int k) {
+	for (int i = 1; i <= x; i++) {
+		if (x % i == 0) {
+			k += 1;
+		}
+	}
+	return k;
+}
+
+int main() {
+	int k = 0;
+	unsigned int a, b;
+	cout << "enter the interval from a to b\t";
+	cin >> a >> b;
+	for (int j = a; j <= b; j++) {
+		cout << j << '\t' <<  del(j, k) << endl;
+	}
+	
+	return 0;
+	system("pause");
+
+}
