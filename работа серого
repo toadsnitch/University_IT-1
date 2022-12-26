@@ -1,0 +1,70 @@
+#include <iostream> 
+#include <cmath> 
+
+using namespace std;
+
+template<typename X>
+X** zamena(X** a, int n, int m) {
+	X* x = new X[n];
+	
+	int min = 10000;
+	cout << "Введите столбец " << endl;
+	for (int h = 0; h < n; h++)
+		cin >> x[h];
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (a[i][j] < min) {
+				min = a[i][j];
+			}
+		}
+	}
+	for (int i = 0; i < n; i++)
+	{
+		bool fl = true; 
+		for (int j = 0; j < m; j++) 
+		{
+			if (a[i][j] != min)
+			{
+				fl = false;
+			}
+		}
+		if (fl) 
+		{
+			for (int h = 0; h < m; h++)
+				a[i][h] = x[h];
+			i++;
+		}
+	}
+	return a;
+}
+template<typename X>
+void print(X** a, int n, int m) {
+	cout << "\nрезультат:\n";
+	for (int i = 0; i < m; i++, cout << endl)
+		for (int j = 0; j < n; j++)
+			cout << a[j][i] << " ";
+
+}
+template<typename X>
+X** create(X c, int n, int m) {
+	X** a = new X * [2 * n];
+	for (int i = 0; i < 2 * n; i++)
+		a[i] = new X[m];
+	cout << "введите массив:\n";
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < m; j++)
+			cin >> a[j][i];
+	return a;
+}
+int main()
+{
+	setlocale(LC_ALL, "Russian"); 
+	int n, m;
+	int c = 1;
+	cout << "n = "; cin >> n; 
+	cout << "m = "; cin >> m;
+	int** s1 = create(c, n, m);
+	zamena(s1, n, m);
+	print(s1, n, m);
+	system("pause");
+}
