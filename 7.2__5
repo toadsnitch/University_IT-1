@@ -1,0 +1,21 @@
+//Глава 7 упражнения 2 номер 5	
+
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+	string s;
+	char c;
+	cout << "string ";
+	getline(cin, s);
+	cout << "symbol ";
+	c = cin.get();
+	string::iterator it = begin(s);
+	while (it != end(s)) {
+		if (*it == c) ++(it = s.insert(it, c));
+		++it;
+	}
+	cout << s << endl;
+	return 0;
+}
