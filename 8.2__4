@@ -27,7 +27,7 @@ int evk(int x, int y) {
 
 int main() {
 	unsigned int a, b;
-	cout << "a, b\t";
+	cout << "a  b\t";
 	cin >> a >> b;
 	
 	cout << evk(a, b);
