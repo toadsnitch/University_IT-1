@@ -15,12 +15,10 @@ bool session_check(student a) {
 int main() {
     setlocale(0, "");
     student  a[10];
-    int n = 0;
     ifstream in("input1.txt");
     ofstream out("output.txt");
     for (int i = 0; !in.eof(); i++) {
         in >> a[i].name >> a[i].last_name >> a[i].otch >> a[i].number_g >> a[i].ex1 >> a[i].ex2 >> a[i].ex3;
-        n++;
         if (session_check(a[i])) out << "\t" << a[i].name << "\t" << a[i].last_name << "\t" << a[i].otch << "\t" << a[i].number_g << "\t" << a[i].ex1 << "\t" << a[i].ex2 << "\t" << a[i].ex3 << endl;
     }
     in.close();
