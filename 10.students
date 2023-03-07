@@ -4,25 +4,38 @@
 #include <string>
 using namespace std;
 
+ifstream in("input3.txt");
+ofstream out("output.txt");
+
 struct student {
-    string name, last_name, otch;
-    int number_g, ex1, ex2, ex3;
+	string name, last_name, otch;
+	int number_g, ex1, ex2, ex3;
+	bool session_check();
+	void input();
+	void print();
 };
-bool session_check(student a) {
-    return (a.ex1 > 2 && a.ex2 > 2 && a.ex3 > 2);
+bool student::session_check() {
+	return (ex1 > 2 && ex2 > 2 && ex3 > 2);
+}
+void student::input() {
+	in >> name >> last_name >> otch >> number_g >> ex1 >> ex2 >> ex3;
+}
+void student::print() {
+	out << "\t" << name << "\t" << last_name << "\t" << otch << "\t" << number_g << "\t" << ex1 << "\t" << ex2 << "\t" << ex3 << endl;
 }
 
 int main() {
-    setlocale(0, "");
-    student  a[10];
-    ifstream in("input1.txt");
-    ofstream out("output.txt");
-    for (int i = 0; !in.eof(); i++) {
-        in >> a[i].name >> a[i].last_name >> a[i].otch >> a[i].number_g >> a[i].ex1 >> a[i].ex2 >> a[i].ex3;
-        if (session_check(a[i])) out << "\t" << a[i].name << "\t" << a[i].last_name << "\t" << a[i].otch << "\t" << a[i].number_g << "\t" << a[i].ex1 << "\t" << a[i].ex2 << "\t" << a[i].ex3 << endl;
-    }
-    in.close();
-    out.close();
+	setlocale(LC_ALL, "RUS");
+	student  a[10];
+	for (int i = 0; !in.eof(); i++) {
+		a[i].input();
+		if (a[i].session_check()) {
+			a[i].print();
+		}
+	}
+	in.close();
+	out.close();
+	return 0;
 }
 
 /*
