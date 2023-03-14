@@ -3,35 +3,49 @@
 #include <cmath>
 using namespace std;
 
-ifstream in("input1.txt");
+ifstream in("input3.txt");
 ofstream out("output.txt");
 
-struct points {
+struct point {
 	int x, y;
 	void print();
 	void input();
-	double dlina();
 };
 
-void points::input() {
+void point::input() {
 	in >> x >> y;
 }
 
-void points::print() {
-	out << "The two points furthest from each other are\t"; // Не допсал!!!
+void point::print() {
+	out << x << '\t' << y << endl;
 }
 
-double points::dlina() {
-	
-	//A(xa, ya) и B(xb, yb) на плоскости: AB = √((xb - xa)2 + (yb - ya)2).
+double dlina(point a, point b) {
+	return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
 }
-
-
 
 int main() {
-	/*Двойной цикл, который будет сравнивать числа перебором like
-	12  23  34  45
-	13  24  35
-	14  25
-	15             */
+	double maxp = 0, temp = 0;
+	point mas[20];
+	int n = 0, j = 0, t1, t2;
+	while (in.peek() != EOF) {
+		mas[n].input();
+		n++;
+	}
+	for (int i = 0; i < n; i++) {
+		j += 1;
+		for (j; j < n; j++) {
+			temp = dlina(mas[i], mas[j]);
+			if (temp > maxp) {
+				maxp = temp;
+				t1 = i;
+				t2 = j;
+			}
+		}
+	}
+	in.close();
+	out.close();
+	cout << t1 << ' ' << t2;
+	system("pause");
+	return 0;
 }
