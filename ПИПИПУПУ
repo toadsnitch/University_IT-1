@@ -1,0 +1,51 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+ifstream in("input.txt");
+ofstream out("output.txt");
+
+struct student {
+	string name, last_name;
+	int ex1, ex2, ex3;
+	bool session_check();
+	void input();
+	void print();
+};
+bool student::session_check() {
+	return (ex1 > 2 && ex2 > 2 && ex3 > 2);
+}
+void student::input() {
+	in >> name >> last_name >> ex1 >> ex2 >> ex3;
+}
+void student::print() {
+	/*out << name << "\t" << last_name << "\t" << ex1 << "\t" << ex2 << "\t" << ex3 << endl;*/			//Нужна ли структура для вывода количества и номеров?
+}
+
+int main() {
+	setlocale(0, "");
+	int count = 0;
+	// не инициализируется переменная n
+	student  arr[10];
+	for (int i = 0; !in.eof(); i++) {
+		arr[i].input();
+		if (arr[i].session_check()) {
+			arr[i].print();
+		}
+	}
+	in.close();
+	out.close();
+	return 0;
+}
+
+
+
+/*
+Колечный Иван 3 2 5
+Ибрагимов Родион 3 3 3
+Сидоров Овидий 2 2 3
+Казаков Виссарион 2 2 2
+Кузьмин Мартин 5 5 5
+Макаров Михаил 4 3 5
+*/
