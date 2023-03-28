@@ -7,42 +7,48 @@ using namespace std;
 ifstream in("input.txt");
 ofstream out("output.txt");
 
-struct student {
+struct Student {
 	string name, surname, otc;
 	int date, m_1, m_2, m_3, m_4, m_5, total_sum;
 	void input();
 	void print();
 };
 
-void student::input(){
+void Student::input(){
 	in >> name >> surname >> otc >> date >> m_1 >> m_2 >> m_3 >> m_4 >> m_5;
 }
 
-void student::print() {
+void Student::print() {
 	out << name << t << surname << t << oct << t << date << t << m_1 << t << m_2 << t << m_3 << t << m_4 << t << m_5;
 }
 
-void sortBubble(student*a, int n) {
-	student temp;
+void sortBubble(Student*arr, int n) {
+	Student temp;
 	for (int i = 0; i < n - 1; i++) {
 		for (int j = n - 1; j > i; --j) {
-			if (student[j].surname < student[j - 1].surname || (student[j].surname == student[j - 1].surname && surname[j].date > student[j - 1].date)) {
-				temp = a[j];
-				a[j] = a[j - 1];
-				a[j - 1] = temp;
+			if (arr[j].surname < arr[j - 1].surname || (arr[j].surname == arr[j - 1].surname && arr[j].date > arr[j - 1].date)) {
+				temp = arr[j];
+				arr[j] = arr[j - 1];
+				arr[j - 1] = temp;
 			}
 		}
 	}
 }
 
 int main() {
-	student a[15];
+	Student arr[10];
 	int n = 0, number_g;
 	in >> number_g;
 	while (in.peek != EOF) {
-		a[n].input();
+		arr[n].input();
 		n++;
 	}
+	
+
+
+	in.close();
+	out.close();
+	return 0;
 
 }
 
