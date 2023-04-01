@@ -1,0 +1,30 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+int interval_1, interval_2;
+bool check(int a) {
+	return(!(interval_1 < a && a < interval_2));
+}
+
+int main() {
+	setlocale(0, "");
+	vector <int> vec;
+	int n, element;
+	
+	cout << "Введите интервал:\t";
+	cin >> interval_1 >> interval_2;
+	cout << "\nВведите количество элементов:\t";
+	cin >> n;
+	
+	for (int i = 0; i < n; ++i) {
+		cout << "Введите элемент\t";
+		cin >> element;
+		vec.push_back(element);
+	}
+
+	cout << "Ответ:\t" << count_if(vec.begin(), vec.end(), check);
+
+	return 0;
+}
