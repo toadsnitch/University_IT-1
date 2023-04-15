@@ -1,0 +1,80 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+ifstream in("input.txt");
+ofstream out("output.txt");
+
+//Функция сортировки вставками
+void insert_sort(int*& a, int n) {
+    int temp;
+    int i, j;
+    for (i = 0; i < n - 1; i++) {
+        j = i + 1;
+        while (a[j] > a[j - 1]) {
+            temp = a[j];
+            a[j] = a[j - 1];
+            a[j - 1] = temp;
+            if (j != 1) j--;
+            else break;
+        }
+    }
+}
+
+void get_line(int** arr, int n, int c) {
+
+    int* a1 = new int[n - c]; //Диагональ выше главной
+    int* a2 = new int[n - c]; //Диагональ ниже главной
+
+    //Заполняем массивы
+    for (int i = 0; i < n - c; i++) {
+        int j = i + c;
+        a1[i] = arr[i][j];
+        a2[i] = arr[i + c][j - c];
+    }
+
+    //Сортируем их
+    insert_sort(a1, n - c);
+    insert_sort(a2, n - c);
+
+    //Отсортированные диагонали передаём в исходную матрицу
+    for (int i = 0; i < n - c; i++) {
+        int j = i + c;
+        arr[i][j] = a1[i];
+        arr[i + c][j - c] = a2[i];
+    }
+}
+
+int main()
+{
+    //Создание матрицы
+    int n; in >> n;
+    int** arr = new int* [n];
+    for (int i = 0; i < n; i++) {
+        arr[i] = new int[n];
+    }
+
+    //Заполнение матрицы
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            in >> arr[i][j];
+        }
+    }
+
+    //Вызов нашей функции
+    for (int c = 1; c < n; c++) {
+        get_line(arr, n, c);
+    }
+
+    //Вывод отсторированной матрицы
+    out << "Sorted array:\n";
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            out << arr[i][j] << ' ';
+        }
+        out << endl;
+    }
+    out.close();
+    in.close();
+    return 0;
+}
