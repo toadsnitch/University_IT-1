@@ -1,0 +1,145 @@
+#include <iostream>
+#include <string>
+#define t '\t'
+using namespace std;
+
+class Program {
+private:
+	string name;
+	string manufacturer;
+	unsigned int year;
+	string version;
+	string license;
+	static int counter;
+public:
+	Program(): name("Unknown name"), manufacturer("Unknown manufacturer"), year(2077), version("Unknown version"), license("Unknown license") {
+		counter++;
+	}
+	
+	Program(string n, string m, unsigned int y, string v) : name(n), manufacturer(m), year(y), version(v) {
+		cout << "Choose the type of licenses (number from 1 to 3):" << t;
+		int c;
+		cin >> c;
+		
+		switch (c){
+		case 1:
+			license = "Коммерческая";
+			break;
+		case 2:
+			license = "Академическая";
+			break;
+		case 3:
+			license = "Условно-бесплатная";
+		default:
+			1;
+		}
+		
+		counter++;
+	}
+	
+	void Output() {		
+		cout << name << t << manufacturer << t << year << t << version << t << license << endl;
+	}
+	void ShowCounter() {
+		cout << counter << endl;
+	}
+
+	string ReturnName() {
+		return name;
+	}
+	string ReturnManufacturer() {
+		return manufacturer;
+	}
+	int ReturnYear() {
+		return year;
+	}
+	string ReturnVersion() {
+		return version;
+	}
+	string ReturnLicense() {
+		return license;
+	}
+
+	void ChangeLicense() {
+		cout << "Choose the type of licenses (number from 1 to 3):" << t;
+		int c;
+		cin >> c;
+
+		switch (c) {
+		case 1:
+			license = "Коммерческая";
+			break;
+		case 2:
+			license = "Академическая";
+			break;
+		case 3:
+			license = "Условно-бесплатная";
+		default:
+			1;
+		}
+	}	
+
+	// !!!!!!!!!!!!!
+	bool operator < (Program a) {
+		if (license < a.ReturnLicense()) {
+			return true;
+		}
+		else if (license == a.ReturnLicense()) {
+			if (name < a.ReturnName()) {
+				return true;
+			}
+			else if (name == a.ReturnName()) {
+				if (version < ReturnVersion()) {
+					return true;
+				}
+			}
+		}
+		else {
+			return false;
+		}
+	}
+
+	bool operator > (Program a) {
+		if (license > a.ReturnLicense()) {
+			return true;
+		}
+		else if (license == a.ReturnLicense()) {
+			if (name > a.ReturnName()) {
+				return true;
+			}
+			else if (name == a.ReturnName()) {
+				if (version > ReturnVersion()) {
+					return true;
+				}
+			}
+		}
+		else {
+			return false;
+		}
+	}
+
+	bool operator == (Program a) {
+		if (license == a.ReturnLicense() && name == a.ReturnName() && version == a.ReturnVersion()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+};
+
+int Program::counter = 0;
+
+int main() {
+	setlocale(0, "");
+	Program Prog_1;
+	Program Prog_2("Искуственный интеллект", "Егор", 2023, "02");
+	Program Prog_3("fgsf", "hfd", 23084, "ko5666");
+	Prog_2.Output();
+	Prog_1.Output();
+	Prog_3.ShowCounter();
+	cout << (Prog_2 < Prog_3);
+	Prog_1.Output();
+	
+	return 0;
+}
