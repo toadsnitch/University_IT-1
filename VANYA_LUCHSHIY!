@@ -134,12 +134,19 @@ int main() {
 	setlocale(0, "");
 	Program Prog_1;
 	Program Prog_2("Искуственный интеллект", "Егор", 2023, "02");
-	Program Prog_3("fgsf", "hfd", 23084, "ko5666");
+	Program Prog_3("Калькулятор", "Егор", 2023, "1");
+	
+	Prog_1.Output();
 	Prog_2.Output();
-	Prog_1.Output();
+	Prog_2.Output();
+	
 	Prog_3.ShowCounter();
-	cout << (Prog_2 < Prog_3);
-	Prog_1.Output();
+	
+	cout << (Prog_2 < Prog_3) << endl;
+	cout << (Prog_1 == Prog_2) << endl;
+	
+	Prog_2.ChangeLicense();
+	Prog_2.Output();
 	
 	return 0;
 }
