@@ -3,6 +3,7 @@
 #define t '\t'
 using namespace std;
 
+//Если будет время сделать лицензию типа енум
 class Program {
 private:
 	string name;
@@ -12,16 +13,16 @@ private:
 	string license;
 	static int counter;
 public:
-	Program(): name("Unknown name"), manufacturer("Unknown manufacturer"), year(2077), version("Unknown version"), license("Unknown license") {
+	Program() : name("Unknown name"), manufacturer("Unknown manufacturer"), year(2077), version("Unknown version"), license("Unknown license") {
 		counter++;
 	}
-	
+
 	Program(string n, string m, unsigned int y, string v) : name(n), manufacturer(m), year(y), version(v) {
 		cout << "1 - Коммерческая" << endl << "2 - Академическая" << endl << "3 - Условно-бесплатная" << endl << "Choose the type of licenses:" << t;
 		int c;
 		cin >> c;
 		cout << endl;
-		switch (c){
+		switch (c) {
 		case 1:
 			license = "Коммерческая";
 			break;
@@ -33,15 +34,15 @@ public:
 		default:
 			1;
 		}
-		
+
 		counter++;
 	}
-	
-	void Output() {		
+
+	void Output() {
 		cout << name << t << manufacturer << t << year << t << version << t << license << endl;
 	}
 	void ShowCounter() {
-		cout << counter << endl;
+		cout << endl << "Counter:" << t << counter << endl << endl;
 	}
 
 	string ReturnName() {
@@ -61,7 +62,7 @@ public:
 	}
 
 	void ChangeLicense() {
-		cout << "1 - Коммерческая" << endl << "2 - Академическая" << endl << "3 - Условно-бесплатная" << endl << "Choose the type of licenses:" << t;
+		cout << endl << "1 - Коммерческая" << endl << "2 - Академическая" << endl << "3 - Условно-бесплатная" << endl << "Choose the type of licenses:" << t;
 		int c;
 		cin >> c;
 		cout << endl;
@@ -77,10 +78,11 @@ public:
 		default:
 			1;
 		}
-	}	
+	}
 
-	// !!!!!!!!!!!!!
+	// !!!!!!!!!!!!! Тут цикл работает неправилно во втором елсе иф, и во втором тоже, где равно все правильно
 	bool operator < (Program a) {
+		cout << "Comparison [<]" << t;
 		if (license < a.ReturnLicense()) {
 			return true;
 		}
@@ -97,9 +99,11 @@ public:
 		else {
 			return false;
 		}
+		cout << endl;
 	}
 
 	bool operator > (Program a) {
+		cout << "Comparison [>]" << t;
 		if (license > a.ReturnLicense()) {
 			return true;
 		}
@@ -116,15 +120,18 @@ public:
 		else {
 			return false;
 		}
+		cout << endl;
 	}
 
 	bool operator == (Program a) {
+		cout << "Comparison [==]" << t;
 		if (license == a.ReturnLicense() && name == a.ReturnName() && version == a.ReturnVersion()) {
 			return true;
 		}
 		else {
 			return false;
 		}
+		cout << endl;
 	}
 };
 
@@ -135,18 +142,19 @@ int main() {
 	Program Prog_1;
 	Program Prog_2("Искуственный интеллект", "Егор", 2023, "02");
 	Program Prog_3("Калькулятор", "Егор", 2023, "1");
-	
+
 	Prog_1.Output();
 	Prog_2.Output();
 	Prog_2.Output();
-	
+
 	Prog_3.ShowCounter();
-	
+
 	cout << (Prog_2 < Prog_3) << endl;
 	cout << (Prog_1 == Prog_2) << endl;
-	
+
 	Prog_2.ChangeLicense();
 	Prog_2.Output();
-	
+
+	system("pause");
 	return 0;
 }
