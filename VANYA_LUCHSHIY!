@@ -17,10 +17,10 @@ public:
 	}
 	
 	Program(string n, string m, unsigned int y, string v) : name(n), manufacturer(m), year(y), version(v) {
-		cout << "Choose the type of licenses (number from 1 to 3):" << t;
+		cout << "1 - Коммерческая" << endl << "2 - Академическая" << endl << "3 - Условно-бесплатная" << endl << "Choose the type of licenses:" << t;
 		int c;
 		cin >> c;
-		
+		cout << endl;
 		switch (c){
 		case 1:
 			license = "Коммерческая";
@@ -61,10 +61,10 @@ public:
 	}
 
 	void ChangeLicense() {
-		cout << "Choose the type of licenses (number from 1 to 3):" << t;
+		cout << "1 - Коммерческая" << endl << "2 - Академическая" << endl << "3 - Условно-бесплатная" << endl << "Choose the type of licenses:" << t;
 		int c;
 		cin >> c;
-
+		cout << endl;
 		switch (c) {
 		case 1:
 			license = "Коммерческая";
