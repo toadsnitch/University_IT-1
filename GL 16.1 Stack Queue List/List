@@ -1,0 +1,34 @@
+#include <iostream>
+#include <fstream>
+#include <list>
+using namespace std;
+ifstream in("input.txt");
+ofstream out("output.txt");
+
+int main() {
+	list <int> numL, resL;
+	int number;
+	
+	while (in.peek() != EOF) {
+		in >> number;	
+		numL.push_back(number);
+	}
+	
+	for (auto it = numL.begin(); it != numL.end(); it++) {
+		if (*it % 2 == 0) {
+			resL.push_front(*it);
+		}
+		else {
+			resL.push_back(*it);
+		}
+	}
+
+	for (int i : resL) {
+		out << i << '\t';
+	}
+
+
+	in.close();
+	out.close();
+	return 0;
+}
