@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+ifstream in("input.txt");
+ofstream out("output.txt");
+
+class Stack {
+	struct Element {
+		int inf;
+		Element *next;
+		Element(int x, Element*p) : inf(x), next(p) {
+		}
+	};
+	
+	Element *head; //указывает на вершину стека
+
+public:
+	Stack() : head(0) {
+	}
+	bool Empty() {
+		return head == 0;
+	}
+	int Pop() { //взятие элемента из стека
+		if (Empty()) {
+			out << "Stack is empty";
+			return 0;
+		}
+		Element *r = head; //запоминаем указ на вершине
+		int i = r-> inf; //запоминаем инф из верхнего элемента
+		head = r-> next; //передвигаем указатель на след элемент
+		delete r; //освобождаем r
+		return i; //возв значение инф  поля
+	}
+
+
+
+};
