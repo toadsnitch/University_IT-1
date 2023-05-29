@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+
+class Enemy {
+protected:
+    string name;
+    int attackPower;
+public:
+    virtual void attack() = 0;
+    virtual void info() = 0;
+};
+
+
+class Lancer : public Enemy {
+private:
+    int placeholder;
+public:
+    Lancer(string s, int x) : placeholder(0) {
+        name = s;
+        attackPower = x;
+    }
+
+    void attack() {
+        cout << "Рыцарь " << '"' << name << '"' << " атакует (сила его атаки : " << attackPower << ")" << endl;
+    }
+    void info() {
+        cout << "Рыцарь " << '"' << name << '"' << endl << "Сила его атаки: " << attackPower << endl;
+    }
+};
+
+class Dragon : public Enemy {
+private:
+    int placeholder;
+public:
+    Dragon(string s, int x) : placeholder(0) {
+        name = s;
+        attackPower = x;
+    }
+    void attack() {
+        cout << "Дракон " << '"' << name << '"' << " атакует (сила его атаки : " << attackPower << ")" << endl;
+    }
+    void info() {
+        cout << "Дракон " << '"' << name << '"' << endl << "Сила его атаки: " << attackPower << endl;
+    }
+};
+
+int main()
+{
+    setlocale(0, "");
+    Enemy* arr[10];
+    arr[0] = new Lancer("s", 1);
+    for (int i = 0; i < 5; i++) {
+        int temp;
+        string name;
+        cin >> temp >> name;
+        if (i % 2 == 0) { arr[i] = new Lancer(name, temp); }
+        else { arr[i] = new Dragon(name, temp); }
+    }
+
+    for (int i = 0; i < 5; i++) {
+        arr[i]->info();
+    }
+
+    arr[0]->attack();
+    arr[1]->attack();
+
+    for (int i = 0; i < 5; i++) {
+        delete arr[i];
+    }
+
+}
