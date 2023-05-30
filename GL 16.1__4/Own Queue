@@ -1,0 +1,86 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+
+using namespace std;
+ofstream outFile("output1.txt");
+template <class Item>
+class Queue
+{
+public:
+    struct Element
+    {
+        Item inf;
+        Element* next;
+
+        Element(Item x) : inf(x), next(0) {}
+    };
+
+    Element* head, * tail;
+
+    Queue() : head(0), tail(0) {}
+
+    bool empty()
+    {
+        return head == 0;
+    }
+
+    Item get()
+    {
+        if (empty())
+        {
+            throw "QueueException: get - queue empty";
+        }
+        else
+        {
+            Element* t = head;
+            Item i = t->inf;
+            head = t->next;
+            if (head == NULL)
+            {
+                tail = NULL;
+            }
+            delete t;
+            return i;
+        }
+    }
+
+    void put(Item data)
+    {
+        Element* t = new Element(data);
+        if (!head)
+        {
+            head = t;
+        }
+        else
+        {
+            tail->next = t;
+        }
+        tail = t;
+    }
+
+};
+
+int main()
+{
+    Queue<string> A, res;
+
+    int n;
+    char letter;
+    int k = 0;
+    cin >> n >> letter;
+    for (int i = 0; i < n; i++) {
+        string s;
+        cin >> s;
+        A.put(s);
+    }
+    for (int i = 0; i < n; i++) {
+        string s;
+        s = A.get();
+        if (s[0] == letter) { k++;  res.put(s);
+        }
+    }
+    cout << k;
+
+    return 0;
+}
