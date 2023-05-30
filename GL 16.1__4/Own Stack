@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
+ifstream in("input.txt");
+ofstream out("output.txt");
 
 template <typename T>
 class Stack
@@ -13,10 +16,10 @@ class Stack
 	};
 	Element* head;
 public:
-	Stack() : head(0) {}
+	Stack() : head(nullptr) {}
 	bool empty()
 	{
-		return head == 0;
+		return head == nullptr;
 	}
 	T pop()
 	{
@@ -28,7 +31,7 @@ public:
 		T i = r->inf;
 		head = r->next;
 		delete r;
-		return i;
+		return i; 
 	}
 	void push(T data) {
 		head = new Element(data, head);
@@ -38,27 +41,26 @@ public:
 int main()
 {
 	Stack <string> A, res;
-	int n, k = 0;
-	cout << "Enter a number\t";
-	cin >> n;
+	int k = 0;
 	char letter;
-	cout << "\nEnter a letter\t";
-	cin >> letter;
-
-	for (int i = 0; i < n; i++) {
-		string s;
-		cin >> s;
+	in >> letter;
+	string s;
+	while(in >> s) {
 		A.push(s);
-	}
-
-	for (int i = 0; i < n; i++) {
 		string s = A.pop();
 		if (s[0] == letter) {
 			res.push(s);
 			k++;
 		}
 	}
-	cout << k;
-	system("pause");
+
+	
+	out << "Words beginning with this letter\t" << k << endl;
 	return 0;
 }
+
+//z
+//zara
+//siodfjisdf
+//epepf
+//zfeuf
